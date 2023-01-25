@@ -1,0 +1,216 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  width:100%;
+  height: 100%;
+}
+body {
+  text-align: center;
+  overflow-y:hidden;
+}
+header {
+    background-color: #333f4c;
+    height: 180px;
+    text-align: center;
+    padding-top:2.5em;
+  }
+h4 {
+  color:white;
+}
+a {
+  color: white;
+}
+.sidenav {
+    background-color: #161b21;
+    position:fixed;
+    width: 200px;
+    height: 100%;
+    margin-left: 0px;
+    margin-top:-220px;
+    z-index: 1000;
+  }
+.page {
+    margin-top:0px;
+    margin-left: 180px;
+   }
+#button1{
+  position:absolute;
+  border-radius: 70%;
+  width: 140px;
+  height: 140px;
+  bottom:70px;
+  left:700px;
+  font-family: 'Jeju Gothic', sans-serif;
+  font-size: 30px;
+  background-color: white;
+  opacity: 60%;
+  border:0;
+  text-align: center;
+  cursor: pointer;
+}
+#button2{
+  position:absolute;
+  border-radius: 70%;
+  width: 140px;
+  height: 140px;
+  bottom:70px;
+  right:500px;
+  font-family: 'Jeju Gothic', sans-serif;
+  font-size: 30px;
+  background-color: white;
+  opacity: 60%;
+  border:0;
+  text-align: center;
+  cursor: pointer;
+}
+.product-img-div{
+  text-align: center;
+}
+.kogas-img{
+  width: 120px;
+  height: 120px;
+  border-radius: 7px;
+  margin-top: 20px;
+}
+.product-img{
+  width: 120px;
+  height: 120px;
+  border: 3px solid rgb(100, 99, 102);
+  border-radius: 7px;
+  background-color: rgb(100, 99, 102);
+  margin-top: 180px;
+}
+.product-img2{
+  width: 120px;
+  height: 120px;
+  border: 3px solid rgb(100, 99, 102);
+  border-radius: 7px;
+  background-color: rgb(100, 99, 102);
+  margin-top: 20px;
+}
+canvas {
+  aspect-ratio: 1820 / 1080;
+  position: relative;
+}
+.table1{
+  float:left;
+  margin-left: 700px;
+  border: 0;
+  width: 45%;
+  height: 60px;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 2.5em;
+  font-weight: bold;
+  font-family: 'Jeju Gothic', sans-serif;
+}
+#line{
+  font-size: 3em;
+  opacity: 50%;
+}
+#num1,#num2,#num3,#num4{
+  font-size: 150%;
+}
+
+table,td,th{
+  border-collapse:collapse;
+}
+p{
+  float:right;
+  text-align: center;
+  font-size: 2em;
+  font-family: 'Jeju Gothic',sans-serif;
+  font-weight: bold;
+  margin-right: 100px;
+  color: white;
+}
+.modal_wrap{
+  display: none;
+  width: 600px;
+  height: 950px;
+  position: absolute;
+  top:35%;
+  left:25%;
+  margin: -300px 0 0 -400px;
+  background:rgba(0, 0, 0,0.2);
+  z-index: 2;
+  padding: 150px 250px;
+  align-items: center;
+}
+.modal_wrap2{
+  display: none;
+  width: 600px;
+  height: 950px;
+  position: absolute;
+  top:35%;
+  left:71%;
+  margin: -300px 0 0 -400px;
+  background:rgba(0, 0, 0,0.2);
+  z-index: 2;
+  padding:150px 250px;
+  align-items: center;
+}
+p1 {
+  margin: auto;
+  width: 100%;
+  font-family: 'Jeju Gothic', sans-serif;
+  font-size: 2.5em;
+  color: white; 
+  text-align: center;
+}
+.btn{
+  border-radius: 15px;
+  height: 100px;
+  width: 350px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 2em;
+  color: white;
+  background-color: #202830;
+  font-family: 'Jeju Gothic', sans-serif;
+  margin-top: 40px;
+  border:solid 3px white;
+}
+.btn-active{
+  background-color: white;
+  color: black;
+}
+.modal_close{
+  border-radius: 15px;
+  height: 100px;
+  width: 350px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 2em;
+  background-color: #636363;
+  color:white;
+  font-family: 'Jeju Gothic', sans-serif;
+  margin-top: 30px;
+  border: 0px;
+}
+.modal_close2{
+  border-radius: 15px;
+  height: 100px;
+  width: 350px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 2em;
+  background-color: #636363;
+  color:white;
+  font-family: 'Jeju Gothic', sans-serif;
+  margin-top: 30px;
+  border: 0px;
+}
+.save{
+  border-radius: 15px;
+  height: 100px;
+  width: 350px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 2em;
+  background-color: #fcc35a;
+  color:white;
+  font-family: 'Jeju Gothic', sans-serif;
+  margin-top: 30px;
+  border: 0px;
+}

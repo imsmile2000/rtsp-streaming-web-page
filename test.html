@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <title>Kogas</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jsmpeg/0.1/jsmpg.js"></script>
+    <link href="http://fonts.googleapis.com/earlyaccess/jejugothic.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="kogas.css"/>
+    <script scr="jsmpeg.0.2.min.js"></script>
+</head>
+<body>
+        <header id="header">
+            <table class="table1">
+                <tbody>
+                <tr text-align="center">
+                    <th span style="color: aqua;">전체 이벤트</th>
+                    <th id="line" rowspan="2" span style="color: rgb(184, 184, 184);">|</th>
+                    <th rowspan="2" span style="color: rgb(155, 94, 212);">굴착기</th>
+                    <th id='num2' rowspan="2" span style="color: white;">0</th>
+                    <th rowspan="2" span style="color: rgb(155, 94, 212);">천공기</th>
+                    <th id='num3' rowspan="2" span style="color: white;">0</th>
+                    <th rowspan="2" span style="color: rgb(155, 94, 212);">크레인</th>
+                    <th id='num4' rowspan="2" span style="color: white;">0</th>
+                </tr>
+                <tr text-align="center">
+                    <th id="num1" span style="color: white;">0</th>
+                </tr>
+                </tbody>
+            </table>
+            <p>내 그룹<br>서울사업소<br>1팀</p>
+        </header>
+        <nav class="col-sm-9 sidenav">
+            <div class="product-img-div">
+                <img class="kogas-img" src="/home/kogas-nx1/Downloads/kogas.jpeg" alt="">
+                <img class="product-img" src="/home/kogas-nx1/Downloads/kogas-icon-monitoring.png" alt="">
+                <img class="product-img2" src="/home/kogas-nx1/Downloads/kogas-icon-report.png" alt="">
+            </div>
+        </nav>
+        <div class="col-sm-9 page">
+            <canvas id="kogas-canvas"></canvas>
+            <button type='button' id="button1">수동<br>검출</button>
+            <div class="black_bg"></div>
+            <div class="modal_wrap">
+                <p1>수동 검출<br><br>30초 전 후 영상이 저장됩니다.<br>아래 검출된 장비를 선택해주세요.</p1>
+                <button type="button" class="btn" id="btn1" data-menu="1" >굴착기</button>
+                <button type="button" class="btn" id="btn2" data-menu="2">천공기</button>
+                <button type="button" class="btn" id="btn3" data-menu="3">크레인</button>
+                <button class="save" onclick="save()">저장</button>
+                <button class="modal_close">취소</button>
+            </div>
+            <button type='button' id="button2">수동<br>검출</button>
+            <div class="black_bg"></div>
+            <div class="modal_wrap2">
+                <p1>수동 검출<br><br>30초 전 후 영상이 저장됩니다.<br>아래 검출된 장비를 선택해주세요.</p1>
+                <button type="button" class="btn" id="btn4" data-menu="1">굴착기</button>
+                <button type="button" class="btn" id="btn5" data-menu="2">천공기</button>
+                <button type="button" class="btn" id="btn6" data-menu="3">크레인</button>
+                <button class="save" onclick="save()">저장</button>
+                <button class="modal_close2">취소</button>
+            </div>
+        </div>     
+    <script>
+        window.onload=function(){
+        var client= new WebSocket('ws://localhost:9999');
+        var canvas = document.querySelector('#kogas-canvas');
+        var player = new jsmpeg(client, {canvas: canvas});
+        canvas.style.width='100%'
+        canvas.style.height='100%'
+        function onClick() {
+            document.querySelector('.modal_wrap').style.display ='block';
+            document.querySelector('.black_bg').style.display ='block';
+        }   
+        function offClick() {
+            document.querySelector('.modal_wrap').style.display ='none';
+            document.querySelector('.black_bg').style.display ='none';
+            currentMenu.classList.remove('btn-active');
+        }
+        document.getElementById('button1').addEventListener('click', onClick);
+        document.querySelector('.modal_close').addEventListener('click', offClick);
+        function onClick2() {
+            document.querySelector('.modal_wrap2').style.display ='block';
+            document.querySelector('.black_bg').style.display ='block';
+        }   
+        function offClick2() {
+            document.querySelector('.modal_wrap2').style.display ='none';
+            document.querySelector('.black_bg').style.display ='none';
+            currentMenu.classList.remove('btn-active');
+        }
+        document.getElementById('button2').addEventListener('click', onClick2);
+        document.querySelector('.modal_close2').addEventListener('click', offClick2);
+    }
+    </script>
+
+    <script>
+        var currentMenu;
+        var menuLinks = document.querySelectorAll('.btn');
+        function clickMenuHandler(){
+            if (currentMenu){
+                currentMenu.classList.remove('btn-active');
+            }   
+            this.classList.add('btn-active');
+            currentMenu = this;
+        }
+        for (var i = 0; i < menuLinks.length; i++){ 
+            menuLinks[i].addEventListener('click', clickMenuHandler);        
+        }
+        function save(){
+            const resultElement=document.getElementById('num1');
+            const result2Element=document.getElementById('num2');
+            const result3Element=document.getElementById('num3');
+            const result4Element=document.getElementById('num4');
+            let number1 = resultElement.innerText;
+            let number2 = result2Element.innerText;
+            let number3 = result3Element.innerText;
+            let number4 = result4Element.innerText;
+            if(document.getElementsByClassName('btn-active')[0].id=='btn1'||document.getElementsByClassName('btn-active')[0].id=='btn4'){
+                number2 = parseInt(number2) + 1;
+                result2Element.innerText=number2;
+                number1=parseInt(number2)+parseInt(number3)+parseInt(number4);
+                resultElement.innerText=number1;
+                document.querySelector('.modal_wrap').style.display ='none';
+                document.querySelector('.modal_wrap2').style.display ='none';
+                document.querySelector('.black_bg').style.display ='none';
+                currentMenu.classList.remove('btn-active');
+            }else if(document.getElementsByClassName('btn-active')[0].id=='btn2'||document.getElementsByClassName('btn-active')[0].id=='btn5'){
+                number3 = parseInt(number3) + 1;
+                result3Element.innerText=number3;
+                number1=parseInt(number2)+parseInt(number3)+parseInt(number4);
+                resultElement.innerText=number1;
+                document.querySelector('.modal_wrap').style.display ='none';
+                document.querySelector('.modal_wrap2').style.display ='none';
+                document.querySelector('.black_bg').style.display ='none';
+                currentMenu.classList.remove('btn-active');
+            }else if(document.getElementsByClassName('btn-active')[0].id=='btn3'||document.getElementsByClassName('btn-active')[0].id=='btn6'){
+                number4 = parseInt(number4) + 1;
+                result4Element.innerText=number4;
+                number1=parseInt(number2)+parseInt(number3)+parseInt(number4);
+                resultElement.innerText=number1;
+                document.querySelector('.modal_wrap').style.display ='none';
+                document.querySelector('.modal_wrap2').style.display ='none';
+                document.querySelector('.black_bg').style.display ='none';
+                currentMenu.classList.remove('btn-active');
+            }
+        }
+    </script>
+    </body>
+    </html>
+    
